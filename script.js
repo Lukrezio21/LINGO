@@ -122,7 +122,12 @@ function handleKeyPress(event) {
     
     // 1. Manejar la entrada de LETRAS
     // Regex simple para verificar que es una letra (A-Z)
-    if (key.length === 1 && key >= 'A' && key <= 'Z') {
+    // Esta línea no vale if (key.length === 1 && key >= 'A' && key <= 'Z') {
+    // ¡NUEVA CONDICIÓN! Acepta A-Z y la Ñ
+    const esLetraValida = /^[A-ZÑ]$/.test(key); 
+
+    if (key.length === 1 && esLetraValida) {
+
         if (currentColumn < WORD_LENGTH) {
             const cell = getActiveCell();
             cell.textContent = key; // Escribe la letra en la celda
